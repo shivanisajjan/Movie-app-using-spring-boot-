@@ -1,9 +1,12 @@
 package com.stackroute.userservice.model;
+import io.swagger.annotations.ApiModel;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.List;
 
 @Entity
+@ApiModel(description = "All details about the Movie. ")
 public class Movie {
     @Id
     private Integer id;
