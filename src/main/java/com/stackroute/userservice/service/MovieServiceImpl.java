@@ -58,7 +58,6 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> getMoviesbyTitle(String title) {
         List<Movie> li=this.movieRepository.findBytitle(title);
-        System.out.println(li.size());
         for (Movie m:li
              ) {
             System.out.println(m.getId());
