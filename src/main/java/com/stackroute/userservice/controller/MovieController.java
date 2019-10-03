@@ -1,5 +1,7 @@
 package com.stackroute.userservice.controller;
 
+import com.stackroute.userservice.exceptions.MovieExistsByIdException;
+import com.stackroute.userservice.exceptions.MovieNotFoundException;
 import com.stackroute.userservice.model.Movie;
 import com.stackroute.userservice.service.MovieService;
 import io.swagger.annotations.*;
@@ -23,8 +25,14 @@ public class MovieController {
     @PostMapping("movie")
     public ResponseEntity<?> saveMovie(@ApiParam(value = "Movie object store in database table", required = true) @Valid @RequestBody Movie movie){
         ResponseEntity responseEntity;
-        movieService.saveMovie(movie);
-        responseEntity=new ResponseEntity<List<Movie>>(this.movieService.getallMovies(), HttpStatus.CREATED);
+        try {
+            movieService.saveMovie(movie);
+            responseEntity = new ResponseEntity<List<Movie>>(this.movieService.getallMovies(), HttpStatus.CREATED);
+        }
+        catch (MovieExistsByIdException ex){
+            responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
+            ex.printStackTrace();
+        }
         return responseEntity;
     }
 
@@ -72,6 +80,13 @@ public class MovieController {
     @ApiOperation(value = "Get an Movie by Title")
     @GetMapping("movie/title/{title}")
     public ResponseEntity<?> getMovieByTitle(@ApiParam(value = "Movie title from which movie object will retrieve", required = true) @PathVariable(value = "title") String title){
-        return new ResponseEntity<List<Movie>>(this.movieService.getMoviesbyTitle(title), HttpStatus.OK);
+        ResponseEntity responseEntity;
+        try{
+            responseEntity=new ResponseEntity<List<Movie>>(this.movieService.getMoviesbyTitle(title), HttpStatus.OK);
+        }
+        catch (MovieNotFoundException ex){
+            responseEntity=new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
+        }
+        return responseEntity;
     }
 }

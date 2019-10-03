@@ -1,9 +1,10 @@
 package com.stackroute.userservice.service;
 
+import com.stackroute.userservice.exceptions.MovieExistsByIdException;
+import com.stackroute.userservice.exceptions.MovieNotFoundException;
 import com.stackroute.userservice.model.Movie;
 import com.stackroute.userservice.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,14 +18,15 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public boolean saveMovie(Movie movie) {
-        try{
-            this.movieRepository.save(movie);
-            return true;
+    public boolean saveMovie(Movie movie) throws MovieExistsByIdException {
+        if(this.movieRepository.existsById(movie.getId())){
+            throw new MovieExistsByIdException("Movie already Exists");
         }
-        catch (Exception e){
-            return false;
+        Movie movie1=this.movieRepository.save(movie);
+        if(movie1==null){
+            throw new MovieExistsByIdException("Movie already Exists");
         }
+        return true;
     }
 
     @Override
@@ -44,24 +46,22 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public boolean deleteMovie(int id) {
-        try{
+    public boolean deleteMovie(int id) throws MovieNotFoundException {
+        if(this.movieRepository.existsById(id)){
             this.movieRepository.deleteById(id);
             return true;
         }
-        catch (Exception e){
-            return false;
+        else{
+            throw new MovieNotFoundException("Movie not found");
         }
     }
 
 
     @Override
-    public List<Movie> getMoviesbyTitle(String title) {
+    public List<Movie> getMoviesbyTitle(String title) throws MovieNotFoundException{
         List<Movie> li=this.movieRepository.findBytitle(title);
-        for (Movie m:li
-             ) {
-            System.out.println(m.getId());
-
+        if(li.isEmpty()){
+            throw new MovieNotFoundException("Movies Not found");
         }
         return li;
     }
