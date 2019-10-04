@@ -1,2 +1,1 @@
-Use @Profile to run the application with the existing service implementation, and the new
-TrackDummyServiceImpl implementation.
+h2-Console without Configuration class
