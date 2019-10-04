@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class MovieExceptionController extends Exception {
+public class MovieExceptionController {
     @ExceptionHandler(value = MovieNotFoundGlobalException.class)
     public ResponseEntity<Object> movieNotFoundException() {
         return new ResponseEntity<>("Movie not found", HttpStatus.NOT_FOUND);
