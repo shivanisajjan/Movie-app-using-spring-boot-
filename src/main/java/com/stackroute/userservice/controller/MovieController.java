@@ -5,6 +5,9 @@ import com.stackroute.userservice.exceptions.MovieNotFoundGlobalException;
 import com.stackroute.userservice.model.Movie;
 import com.stackroute.userservice.service.MovieService;
 import io.swagger.annotations.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +19,8 @@ import java.util.List;
 @RequestMapping(value = "/api")
 @Api(value="Movie Services", description="All Operations of Movie app")
 public class MovieController {
+    @Autowired
+    @Qualifier("trackDummyServiceImpl")
     private MovieService movieService;
 
     public MovieController(MovieService movieService) {

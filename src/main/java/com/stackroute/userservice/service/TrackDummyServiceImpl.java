@@ -5,17 +5,15 @@ import com.stackroute.userservice.exceptions.MovieNotFoundGlobalException;
 import com.stackroute.userservice.model.Movie;
 import com.stackroute.userservice.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-@Primary
-public class MovieServiceImpl implements MovieService {
+public class TrackDummyServiceImpl implements MovieService {
     private MovieRepository movieRepository;
 
     @Autowired
-    public MovieServiceImpl(MovieRepository movieRepository) {
+    public TrackDummyServiceImpl(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }
 
@@ -24,6 +22,7 @@ public class MovieServiceImpl implements MovieService {
         if(this.movieRepository.existsById(movie.getId())){
             throw new MovieExistsByIdGlobalException();
         }
+        System.out.println("Hiii");
         Movie movie1=this.movieRepository.save(movie);
         if(movie1==null){
             throw new MovieExistsByIdGlobalException();
