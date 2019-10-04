@@ -1,1 +1,1 @@
-h2-Console without Configuration class
+Swap in-memory H2 database with MySQL.

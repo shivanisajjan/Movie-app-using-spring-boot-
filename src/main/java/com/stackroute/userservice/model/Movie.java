@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.List;
 
-@Entity
+@Entity(name = "Movie")
 @ApiModel(description = "All details about the Movie. ")
 @Data
 @NoArgsConstructor
