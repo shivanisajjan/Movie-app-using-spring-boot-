@@ -1,2 +1,1 @@
-Create two additional properties file application-dev.properties that contains configuration for
-H2 and application-prod.properties that contains configurations for MySQL.
+ Use spring developer tool and verify that changes are getting reflected without the need of restarting the server
