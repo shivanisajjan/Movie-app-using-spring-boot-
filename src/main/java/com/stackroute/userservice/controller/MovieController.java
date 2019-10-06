@@ -69,7 +69,7 @@ public class MovieController {
         ResponseEntity responseEntity;
         try{
             movieService.deleteMovie(id);
-            responseEntity=new ResponseEntity<String>("Successfully created", HttpStatus.OK);
+            responseEntity=new ResponseEntity<String>("Successfully deleted", HttpStatus.OK);
         }
         catch (Exception e){
             responseEntity=new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
