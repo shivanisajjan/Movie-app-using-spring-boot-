@@ -5,10 +5,12 @@ import com.stackroute.userservice.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 @Component
+@PropertySource(value = "classpath:appListener.properties", ignoreResourceNotFound=true)
 public class AppListenser implements ApplicationListener<ContextRefreshedEvent> {
     @Value("${movie.id}")
     private int id;
