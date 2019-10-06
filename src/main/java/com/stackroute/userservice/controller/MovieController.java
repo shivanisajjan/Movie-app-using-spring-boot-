@@ -66,7 +66,7 @@ public class MovieController {
     public ResponseEntity<?> deleteMovie(@ApiParam(value = "Movie Id from which Movie object will delete from database table", required = true) @PathVariable(value = "id") int id) throws MovieNotFoundGlobalException {
         ResponseEntity responseEntity;
         movieService.deleteMovie(id);
-        responseEntity=new ResponseEntity<String>("Successfully created", HttpStatus.OK);
+        responseEntity=new ResponseEntity<String>("Successfully deleted", HttpStatus.OK);
         return responseEntity;
     }
 
