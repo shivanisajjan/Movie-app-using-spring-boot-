@@ -6,11 +6,12 @@ import com.stackroute.userservice.model.Movie;
 import com.stackroute.userservice.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-@Primary
+@Profile("dev")
 public class MovieServiceImpl implements MovieService {
     private MovieRepository movieRepository;
 

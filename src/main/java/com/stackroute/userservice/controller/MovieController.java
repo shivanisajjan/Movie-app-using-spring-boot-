@@ -20,7 +20,6 @@ import java.util.List;
 @Api(value="Movie Services", description="All Operations of Movie app")
 public class MovieController {
     @Autowired
-    @Qualifier("trackDummyServiceImpl")
     private MovieService movieService;
 
     public MovieController(MovieService movieService) {

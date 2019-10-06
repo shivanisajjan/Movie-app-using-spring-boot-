@@ -5,10 +5,12 @@ import com.stackroute.userservice.exceptions.MovieNotFoundGlobalException;
 import com.stackroute.userservice.model.Movie;
 import com.stackroute.userservice.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
+@Profile("prod")
 public class TrackDummyServiceImpl implements MovieService {
     private MovieRepository movieRepository;
 
