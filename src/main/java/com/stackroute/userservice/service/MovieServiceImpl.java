@@ -3,7 +3,6 @@ package com.stackroute.userservice.service;
 import com.stackroute.userservice.model.Movie;
 import com.stackroute.userservice.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
