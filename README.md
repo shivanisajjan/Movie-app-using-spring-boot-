@@ -1,1 +1,1 @@
-Add an endpoint to search trackByName. Understand @Query and parameter passing to @Query
+Add an endpoint to search movieByName. Understand @Query and parameter passing to @Query
