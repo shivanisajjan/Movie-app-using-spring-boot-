@@ -12,13 +12,13 @@ import java.util.List;
 @RequestMapping(value = "/api")
 public class MovieController {
     private MovieService movieService;
+    private ResponseEntity responseEntity;
 
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
     }
     @PostMapping("movie")
     public ResponseEntity<?> saveMovie(@RequestBody Movie movie){
-        ResponseEntity responseEntity;
         try{
             movieService.saveMovie(movie);
             responseEntity=new ResponseEntity<List<Movie>>(this.movieService.getallMovies(), HttpStatus.CREATED);
@@ -34,7 +34,6 @@ public class MovieController {
     }
     @PutMapping("movie")
     public ResponseEntity<?> updateMovie(@RequestBody Movie movie){
-        ResponseEntity responseEntity;
         try{
             movieService.update(movie);
             responseEntity=new ResponseEntity<List<Movie>>(this.movieService.getallMovies(), HttpStatus.OK);
@@ -46,10 +45,9 @@ public class MovieController {
     }
     @DeleteMapping("movie")
     public ResponseEntity<?> deleteMovie(@RequestBody int id){
-        ResponseEntity responseEntity;
         try{
             movieService.deleteMovie(id);
-            responseEntity=new ResponseEntity<String>("Successfully created", HttpStatus.OK);
+            responseEntity=new ResponseEntity<String>("Successfully deleted", HttpStatus.OK);
         }
         catch (Exception e){
             responseEntity=new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
