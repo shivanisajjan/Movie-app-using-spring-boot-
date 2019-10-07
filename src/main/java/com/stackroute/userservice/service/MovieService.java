@@ -9,4 +9,5 @@ public interface MovieService {
     public List<Movie> getallMovies();
     public boolean update(Movie movie);
     public boolean deleteMovie(int id);
+    public List<Movie> getMoviesbyTitle(String title);
 }
